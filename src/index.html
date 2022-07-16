@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Fish</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.3/ScrollTrigger.min.js"></script>	
+</head>
+<canvas class="webgl"></canvas>
+<body id="bodyScrollbar">
+    <div class="gameDiv">
+        <div class="mainGameDiv">
+            <div class="newsFeedDiv">
+                <div class="newsFeedHeaderDiv">
+                    The Daily News
+                </div>
+                <div class="actualNewsFeedDiv">
+
+                    <div class="newsDiv current">
+                        <div class="newsText">Elon Musk FINALLY Buys Chirper!</div>
+                        <div class="countDown"></div>
+                    </div>
+
+                    <div class="newsDiv old">
+                        <div class="newsText">Elon Musk FINALLY Buys Chirper!</div>
+                        <div class="newsText">Elon Musk FINALLY Buys Chirper!</div>
+                        <div class="newsText">Elon Musk FINALLY Buys Chirper!</div>
+                    </div>
+
+                    <div class="newsDiv old">
+                        <div class="newsText">Elon Musk FINALLY Buys Chirper!</div>
+                        <div class="newsText">Elon Musk FINALLY Buys Chirper!</div>
+                        <div class="newsText">Elon Musk FINALLY Buys Chirper!</div>
+                    </div>
+
+                    <div class="newsDiv old">
+                        <div class="newsText">Elon Musk FINALLY Buys Chirper!</div>
+                        <div class="newsText">Elon Musk FINALLY Buys Chirper!</div>
+                        <div class="newsText">Elon Musk FINALLY Buys Chirper!</div>
+                    </div>
+
+                    <div class="newsDiv old">
+                        <div class="newsText">Elon Musk FINALLY Buys Chirper!</div>
+                        <div class="newsText">Elon Musk FINALLY Buys Chirper!</div>
+                        <div class="newsText">Elon Musk FINALLY Buys Chirper!</div>
+                    </div>
+
+                    <div class="newsDiv old">
+                        <div class="newsText">Elon Musk FINALLY Buys Chirper!</div>
+                        <div class="newsText">Elon Musk FINALLY Buys Chirper!</div>
+                        <div class="newsText">Elon Musk FINALLY Buys Chirper!</div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="stocksDiv">
+
+                <div class="categoryDiv">
+                    <!-- <div class="categoryHeaderDiv">Tech</div> -->
+                    <div class="stockDiv">
+                        
+                        <div class="stockInfoDiv">
+                            <div class="stockLogoDiv">IMG</div>
+                            <div class="stockNameDiv">McRonald's</div>
+                            <div class="stockPriceDiv">$ 220.05</div>
+                            <div class="stockChangeDiv down">
+                                <span class="material-symbols-outlined">arrow_drop_down</span>
+                                <t class="changeText">3.5%</t>
+                            </div>
+                        </div>
+
+                        <div class="stockActions">
+                            <button class="buyButton">BUY</button>
+                            <button class="sellButton">SELL</button>
+                        </div>
+
+                    </div>
+
+                    <div class="stockDiv">
+                        
+                        <div class="stockInfoDiv">
+                            <div class="stockLogoDiv">IMG</div>
+                            <div class="stockNameDiv">BFC</div>
+                            <div class="stockPriceDiv">$ 201.40</div>
+                            <div class="stockChangeDiv up">
+                                <span class="material-symbols-outlined">arrow_drop_up</span>
+                                <t class="changeText">4.7%</t>
+                            </div>
+                        </div>
+
+                        <div class="stockActions">
+                            <button class="buyButton">BUY</button>
+                            <button class="sellButton">SELL</button>
+                        </div>
+
+                    </div>
+
+                    <div class="stockDiv">
+                        
+                        <div class="stockInfoDiv">
+                            <div class="stockLogoDiv">IMG</div>
+                            <div class="stockNameDiv">BFC</div>
+                            <div class="stockPriceDiv">$ 201.40</div>
+                            <div class="stockChangeDiv up">
+                                <span class="material-symbols-outlined">arrow_drop_up</span>
+                                <t class="changeText">4.7%</t>
+                            </div>
+                        </div>
+
+                        <div class="stockActions">
+                            <button class="buyButton">BUY</button>
+                            <button class="sellButton">SELL</button>
+                        </div>
+
+                    </div>
+
+                    <div class="stockDiv">
+                        
+                        <div class="stockInfoDiv">
+                            <div class="stockLogoDiv">IMG</div>
+                            <div class="stockNameDiv">McRonald's</div>
+                            <div class="stockPriceDiv">$ 220.05</div>
+                            <div class="stockChangeDiv down">
+                                <span class="material-symbols-outlined">arrow_drop_down</span>
+                                <t class="changeText">3.5%</t>
+                            </div>
+                        </div>
+
+                        <div class="stockActions">
+                            <button class="buyButton">BUY</button>
+                            <button class="sellButton">SELL</button>
+                        </div>
+
+                    </div>
+
+                    <div class="stockDiv">
+                        
+                        <div class="stockInfoDiv">
+                            <div class="stockLogoDiv">IMG</div>
+                            <div class="stockNameDiv">McRonald's</div>
+                            <div class="stockPriceDiv">$ 220.05</div>
+                            <div class="stockChangeDiv down">
+                                <span class="material-symbols-outlined">arrow_drop_down</span>
+                                <t class="changeText">3.5%</t>
+                            </div>
+                        </div>
+
+                        <div class="stockActions">
+                            <button class="buyButton">BUY</button>
+                            <button class="sellButton">SELL</button>
+                        </div>
+
+                    </div>
+
+                    <div class="stockDiv">
+                        
+                        <div class="stockInfoDiv">
+                            <div class="stockLogoDiv">IMG</div>
+                            <div class="stockNameDiv">McRonald's</div>
+                            <div class="stockPriceDiv">$ 220.05</div>
+                            <div class="stockChangeDiv down">
+                                <span class="material-symbols-outlined">arrow_drop_down</span>
+                                <t class="changeText">3.5%</t>
+                            </div>
+                        </div>
+
+                        <div class="stockActions">
+                            <button class="buyButton">BUY</button>
+                            <button class="sellButton">SELL</button>
+                        </div>
+
+                    </div>
+                    
+                    <div class="stockDiv">
+                        
+                        <div class="stockInfoDiv">
+                            <div class="stockLogoDiv">IMG</div>
+                            <div class="stockNameDiv">McRonald's</div>
+                            <div class="stockPriceDiv">$ 220.05</div>
+                            <div class="stockChangeDiv down">
+                                <span class="material-symbols-outlined">arrow_drop_down</span>
+                                <t class="changeText">3.5%</t>
+                            </div>
+                        </div>
+
+                        <div class="stockActions">
+                            <button class="buyButton">BUY</button>
+                            <button class="sellButton">SELL</button>
+                        </div>
+
+                    </div>
+
+                    <div class="stockDiv">
+                        
+                        <div class="stockInfoDiv">
+                            <div class="stockLogoDiv">IMG</div>
+                            <div class="stockNameDiv">McRonald's</div>
+                            <div class="stockPriceDiv">$ 220.05</div>
+                            <div class="stockChangeDiv down">
+                                <span class="material-symbols-outlined">arrow_drop_down</span>
+                                <t class="changeText">3.5%</t>
+                            </div>
+                        </div>
+
+                        <div class="stockActions">
+                            <button class="buyButton">BUY</button>
+                            <button class="sellButton">SELL</button>
+                        </div>
+
+                    </div>
+
+                    <div class="stockDiv">
+                        
+                        <div class="stockInfoDiv">
+                            <div class="stockLogoDiv">IMG</div>
+                            <div class="stockNameDiv">McRonald's</div>
+                            <div class="stockPriceDiv">$ 220.05</div>
+                            <div class="stockChangeDiv down">
+                                <span class="material-symbols-outlined">arrow_drop_down</span>
+                                <t class="changeText">3.5%</t>
+                            </div>
+                        </div>
+
+                        <div class="stockActions">
+                            <button class="buyButton">BUY</button>
+                            <button class="sellButton">SELL</button>
+                        </div>
+
+                    </div>
+
+                    <div class="stockDiv">
+                        
+                        <div class="stockInfoDiv">
+                            <div class="stockLogoDiv">IMG</div>
+                            <div class="stockNameDiv">McRonald's</div>
+                            <div class="stockPriceDiv">$ 220.05</div>
+                            <div class="stockChangeDiv down">
+                                <span class="material-symbols-outlined">arrow_drop_down</span>
+                                <t class="changeText">3.5%</t>
+                            </div>
+                        </div>
+
+                        <div class="stockActions">
+                            <button class="buyButton">BUY</button>
+                            <button class="sellButton">SELL</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    
+        <div class="portfolioDiv">
+            
+            <div class="userPortfolioDiv">
+                <div class="statsDiv">
+                    <div class="userNameDiv">Rando's Portfolio</div>
+                    <div class="userNameDiv">Current Value: $125,000</div>
+                    <div class="userNameDiv">Available Money: $12,450</div>
+                </div>
+                <div class="percentageDiv up">
+                    <span class="material-symbols-outlined biggerArrow">arrow_drop_up</span>
+                    <t class="changeText">25%</t>
+                </div>
+            </div>
+
+            <div class="timerDiv">
+                <div class="timerText">Portfolio Presentation in: <t class="actualTimer">5 days</t></div>
+                <div class="timerBar">
+                    <div class="timerProgress"></div>
+                </div>
+            </div>
+
+            <div class="fishPortfolioDiv">
+                <div class="percentageDiv up">
+                    <span class="material-symbols-outlined biggerArrow">arrow_drop_up</span>
+                    <t class="changeText">25%</t>
+                </div>
+                <div class="statsDiv">
+                    <div class="userNameDiv">Glenn's Portfolio</div>
+                    <div class="userNameDiv">Current Value: $125,000</div>
+                    <div class="userNameDiv">Available Money: $12,450</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

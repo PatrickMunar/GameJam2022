@@ -1,0 +1,281 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: white;
+    font-size: 10px;
+    color: black;
+    /* cursor: none; */
+}
+
+body {
+    background-color: white;
+    box-sizing: border-box;
+    font-size: 10px;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    /* backdrop-filter: blur(10px); */
+}
+
+body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.webgl
+{
+    position: fixed;
+    outline: none;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+.gameDiv {
+    width: 75vw;
+    height: 100vh;
+    border: 2px solid black;
+    padding: 5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFF1;
+    border-radius: 2.5rem;
+    z-index: 10000;
+}
+
+.mainGameDiv {
+    width: 65vw;
+    height: calc(70vh);
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+/* News Feed */
+.newsFeedDiv {
+    width: 50%;
+    height: 100%;
+    border-left: 1px solid black;
+    overflow-y: hidden;
+    /* margin-top: 7rem; */
+}
+
+.newsFeedDiv::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.newsFeedHeaderDiv {
+    font-size: 3rem;
+    width: 32.5vw;
+    padding: 2rem;
+    border: 1px solid black;
+    background-color: #23395D;
+    color: white;
+    position: fixed;
+}
+
+.actualNewsFeedDiv {
+    width: 100%;
+    /* border: 2px solid blue; */
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 2rem;
+    margin-top: 7rem;
+    background-color: #e8f3fd;
+}
+
+.newsDiv {
+    font-size: 2rem;
+    width: 100%;
+    border: 1px solid black;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    background-color: white;
+}
+
+.newsText {
+    margin: 2rem;
+}
+
+.countDown {
+    position: relative;
+    border: 2px solid #23395D;
+    margin-top: 1rem;
+    transform-origin: left;
+}
+
+/* Stocks */
+.stocksDiv {
+    width: 50%;
+    height: 100%;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    /* margin-left: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem; */
+    overflow-y: auto;
+}
+
+.categoryDiv {
+    width: 100%;
+    padding: 2rem;
+    /* border: 2px solid red; */
+}
+
+.stockDiv {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.lastStock {
+    margin-bottom: 0 !important;
+}
+
+.stockInfoDiv {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.stockLogoDiv {
+    width: 5rem;
+}
+
+.stockNameDiv, .stockPriceDiv, .stockChangeDiv {
+    width: 9rem;
+}
+
+.stockChangeDiv {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* border: 2px solid red; */
+}
+
+.up {
+    color: green;
+}
+
+.down {
+    color: red;
+}
+
+.buyButton {
+    margin-right: 1rem;
+    /* padding: 2rem; */
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 7rem;
+    cursor: pointer;
+    font-size: 1rem;
+    background-color: #CEFAD0;
+    border-color: green;
+    font-weight: bold;
+}
+
+.sellButton {
+    /* padding: 2rem; */
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 7rem;
+    cursor: pointer;
+    font-size: 1rem;
+    background-color: #FF8BA0;
+    border-color: red;
+    font-weight: bold;
+}
+
+/* Scores */
+.portfolioDiv {
+    width: 65vw;
+    height: calc(30vh - 10vw);
+    border: 1px solid black;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.userPortfolioDiv {
+    width: 30%;
+    font-size: 2rem;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.percentageDiv {
+    font-size: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.biggerArrow {
+    transform-origin: center;
+    transform: scale(2);
+    margin: 1rem;
+}
+
+.fishPortfolioDiv {
+    width: 30%;
+    font-size: 2rem;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timerDiv {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 70%;
+}
+
+.timerText {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+    padding-right: 5rem;
+}
+
+.actualTimer {
+    font-size: 3rem;
+}
+
+.timerBar {
+    border: 2px solid black;
+    width: 100%;
+    height: 3rem;
+    overflow: hidden;
+}
+
+.timerProgress {
+    height: 200%;
+    width: 100%;
+    background-color: black;
+}
