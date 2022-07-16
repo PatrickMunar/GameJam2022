@@ -9,5 +9,5 @@ To Do:
 - Minigames
 
 To Run (in Terminal):
-npm install
-npm run dev
+- npm install
+- npm run dev
