@@ -91,7 +91,7 @@ body::-webkit-scrollbar {
     padding-right: 0.5rem;
     padding-top: 2rem;
     margin-top: 7rem;
-    background-color: #e8f3fd;
+    /* background-color: #e8f3fd; */
 }
 
 .newsDiv {

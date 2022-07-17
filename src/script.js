@@ -226,12 +226,7 @@ const tick = () =>
 //     ease: 'none'
 // })
 
-// Animations
-const countDown = () => {
-    gsap.to('.countDown', {duration: 20, scaleX: 0, ease: 'none'})
-}
 
-countDown()
 
 // Round Timer (Will stop in 10 minutes)
 gsap.fromTo('.timerProgress', {duration: 0, scaleX: 0, transformOrigin: 'left', ease: 'none'}, {duration: 5*60, scaleX: 1, transformOrigin: 'left', ease: 'none'})
@@ -340,6 +335,61 @@ for (let i = 0; i < sellButtons.length; i++) {
     })
 }
 
+// News Updates
+const news = [
+    {
+        news: "Elon Mask FINALLY buys Chirper!",
+        effects:
+        [
+            {results: "Chirper stocks skyrockets!", affectedPositively: [2], affectedNegatively: []},
+            {results: "He completely forgets about Tezla.", affectedPositively: [0], affectedNegatively: [5]}
+        ]
+    },
+    {
+        news: "CRISIS: Global Potato Shortage",
+        effects:
+        [
+            {results: "No, you can't have fries with that.", affectedPositively: [0,1], affectedNegatively: []},
+            {results: "The lack of Vodka has surprisingly lowered the number of car accidents. Car prices go up!", affectedPositively: [], affectedNegatively: [4,5]}
+        ]
+    }
+]
+
+// Add News
+const actualNewsFeedDiv = document.querySelector('.actualNewsFeedDiv')
+
+const addNews = () => {
+    const newDiv = document.createElement("div")
+    newDiv.setAttribute('class', 'newsDiv')
+    newDiv.classList.add('newsDiv')
+
+    const newsIndex = Math.floor(Math.random() * news.length)
+
+    const newsText = document.createElement("div")
+    newsText.setAttribute('class', 'newsText')
+    newsText.innerText = news[newsIndex].news
+
+    const countDown = document.createElement("div")
+    countDown.setAttribute('class', 'countDown')
+    setTimeout(() => {
+        document.querySelector('.countDown').classList.remove('countDown')
+        updateNews()
+    }, 10000)
+
+    newDiv.appendChild(newsText)
+    newDiv.appendChild(countDown)
+
+    actualNewsFeedDiv.appendChild(newDiv)
+}
+
+const updateNews = () => {
+    addNews()
+    gsap.to('.countDown', {duration: 10, scaleX: 0, transformOrigin: 'left', ease: 'none'})
+}
+
+updateNews()
+
+// Global Updates
 const globalUpdates = () => {
     updateStocks()
     updatePlayerPortfolio()
