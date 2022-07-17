@@ -210,23 +210,11 @@ const tick = () =>
     window.requestAnimationFrame(tick)
 }
 
-// Scroll Triggers
-// gsap.fromTo(camera.position, {x: 0, y: 0}, {x: 0, y: 0})
-
-// gsap.fromTo(camera.position, {x: parameters.sectionDistance * 0 * Math.sin(parameters.rotationAngle), y: -parameters.sectionDistance * 0 * Math.cos(parameters.rotationAngle)}, {
-//     scrollTrigger: {
-//         trigger: '#section1',
-//         start: () =>  window.innerHeight*1 + ' bottom',
-//         end: () =>  window.innerHeight*1 + ' top',
-//         snap: 1, 
-//         scrub: true,
-//     },
-//     x: parameters.sectionDistance * 1 * Math.sin(parameters.rotationAngle),
-//     y: -parameters.sectionDistance * 1 * Math.cos(parameters.rotationAngle),
-//     ease: 'none'
-// })
-
-
+const game = {
+    swingAmount: 100,
+    startingMoney: 1000,
+    roundDuration: 10
+}
 
 // Round Timer (Will stop in 10 minutes)
 gsap.fromTo('.timerProgress', {duration: 0, scaleX: 0, transformOrigin: 'left', ease: 'none'}, {duration: 5*60, scaleX: 1, transformOrigin: 'left', ease: 'none'})
@@ -247,8 +235,8 @@ updateTimer()
 // Player Object
 const playerData = {
     name: 'Patrick',
-    currentMoney: 1000,
-    availableMoney: 1000,
+    currentMoney: game.startingMoney,
+    availableMoney: game.startingMoney,
     investedMoney: 0,
     score: 0,
 }
@@ -269,13 +257,13 @@ updatePlayerPortfolio()
 
 // Stocks Data
 const stocksData = [
-    {name: "McRonald's", price: 15, projection: 0, owned: 0, value: 0},
-    {name: "Burger Queen", price: 15, projection: 0, owned: 0, value: 0},
-    {name: "Chirper", price: 15, projection: 0, owned: 0, value: 0},
-    {name: "Goggle", price: 15, projection: 0, owned: 0, value: 0},
-    {name: "Fjord", price: 15, projection: 0, owned: 0, value: 0},
-    {name: "Tezla", price: 15, projection: 0, owned: 0, value: 0},
-    {name: "?", price: 15, projection: 0, owned: 0, value: 0}
+    {name: "McRonald's", price: 135, projection: 0, owned: 0, value: 0},
+    {name: "Burger Queen", price: 122, projection: 0, owned: 0, value: 0},
+    {name: "Chirper", price: 200, projection: 0, owned: 0, value: 0},
+    {name: "Goggle", price: 200, projection: 0, owned: 0, value: 0},
+    {name: "Fjord", price: 120, projection: 0, owned: 0, value: 0},
+    {name: "Tezla", price: 150, projection: 0, owned: 0, value: 0},
+    {name: "Anyday Fitness", price: 120, projection: 0, owned: 0, value: 0}
 ]
 
 const stockNames = document.querySelectorAll('.stockNameDiv')
@@ -303,7 +291,7 @@ const updateStocks = () => {
         }
         stockOwneds[i].innerText = stocksData[i].owned
         stocksData[i].value = stocksData[i].owned * stocksData[i].price
-        stockValues[i].innerText = stocksData[i].value
+        stockValues[i].innerText = parseFloat((stocksData[i].value).toFixed(2))
     }
 }
 
@@ -314,7 +302,7 @@ const buyButtons = document.querySelectorAll('.buyButton')
 
 for (let i = 0; i < buyButtons.length; i++) {
     buyButtons[i].addEventListener('click', () => {
-        if (playerData.availableMoney > stocksData[i].price) {
+        if (playerData.availableMoney >= stocksData[i].price) {
             stocksData[i].owned += 1
             playerData.availableMoney -= stocksData[i].price
         }
@@ -338,22 +326,82 @@ for (let i = 0; i < sellButtons.length; i++) {
 // News Updates
 const news = [
     {
-        news: "Elon Mask FINALLY buys Chirper!",
+        news: "Elon Mask Re-Negotiating with Chirper?!",
         effects:
         [
-            {results: "Chirper stocks skyrockets!", affectedPositively: [2], affectedNegatively: []},
-            {results: "He completely forgets about Tezla.", affectedPositively: [0], affectedNegatively: [5]}
+            {results: "Chirper stocks skyrockets!", trend: [0, 0, 1, 0, 0, 0, 0]},
+            {results: "He completely forgets about Tezla.", trend: [0, 0, 0, 0, 0, -1, 0]}
         ]
     },
     {
-        news: "CRISIS: Global Potato Shortage",
+        news: "Global Potato Shortage",
         effects:
         [
-            {results: "No, you can't have fries with that.", affectedPositively: [0,1], affectedNegatively: []},
-            {results: "The lack of Vodka has surprisingly lowered the number of car accidents. Car prices go up!", affectedPositively: [], affectedNegatively: [4,5]}
+            {results: "No, you can't have fries with that.", trend: [-1, -1, 0, 0, 0, 0, 0]},
+            {results: "The lack of Vodka has surprisingly lowered the number of car accidents. Car prices go up!", trend: [0, 0, 0, 0, 1, 1, 0]}
+        ]
+    },
+    {
+        news: "Global Potato Surplus",
+        effects:
+        [
+            {results: "Free Fries for Every Large Meal!", trend: [1, 1, 0, 0, 0, 0, 0]},
+            {results: "People are exercising more and relying less on car for transportation to burn the calories.", trend: [0, 0, 0, 0, -1, -1, 1]}
         ]
     }
 ]
+
+// Change Stocks Prices
+const changeStockPrices = (x) => {
+    let currentTotalInvested = 0
+    for (let i = 0; i < stocksData.length; i++) {
+        let tempPrice = stocksData[i].price
+        if (x[i] == 1) {
+            stocksData[i].price = parseFloat((tempPrice + Math.floor(Math.random() * 50)/10).toFixed(2))
+            stocksData[i].value = parseFloat((stocksData[i].owned * stocksData[i].price).toFixed(2))
+            stocksData[i].projection = ((stocksData[i].price - tempPrice)/tempPrice * 100).toFixed(2)
+            currentTotalInvested += stocksData[i].value
+        }
+        else if (x[i] == -1) {
+            stocksData[i].price = parseFloat((tempPrice - Math.floor(Math.random() * 50)/10).toFixed(2))
+            stocksData[i].value = parseFloat((stocksData[i].owned * stocksData[i].price).toFixed(2))
+            stocksData[i].projection = ((stocksData[i].price - tempPrice)/tempPrice * 100).toFixed(2)
+            currentTotalInvested += stocksData[i].value
+        }
+        else {
+            let randomChance = Math.floor(Math.random()*2)
+            if (randomChance == 0) {
+                console.log(tempPrice)
+                stocksData[i].price = parseFloat((tempPrice + Math.floor(Math.random() * game.swingAmount)/10).toFixed(2))
+            }
+            else {
+                stocksData[i].price = parseFloat((tempPrice - Math.floor(Math.random() * game.swingAmount)/10).toFixed(2))
+            }
+            stocksData[i].value = parseFloat((stocksData[i].owned * stocksData[i].price).toFixed(2))
+            stocksData[i].projection = ((stocksData[i].price - tempPrice)/tempPrice * game.swingAmount*2).toFixed(2)
+            currentTotalInvested += stocksData[i].value
+        }
+    }
+
+    playerData.investedMoney = currentTotalInvested
+    playerData.currentMoney = playerData.availableMoney + playerData.investedMoney
+    playerData.score = parseFloat((((playerData.currentMoney - game.startingMoney)/playerData.currentMoney) * 100).toFixed(2))
+
+    playerCV.innerText = playerData.currentMoney.toLocaleString("en-US")
+    playerAM.innerText = playerData.availableMoney.toLocaleString("en-US")
+    playerScore.innerText = playerData.score.toLocaleString("en-US")
+    if (playerData.score < 0) {
+        document.querySelector('.playerPercentageDiv').classList.remove('up')
+        document.querySelector('.playerPercentageDiv').classList.add('down')
+        document.querySelector('.playerArrow').innerText = 'arrow_drop_dow'
+    }
+    else {
+        document.querySelector('.playerPercentageDiv').classList.remove('down')
+        document.querySelector('.playerPercentageDiv').classList.add('up')
+        document.querySelector('.playerArrow').innerText = 'arrow_drop_up'
+    }
+    updateStocks()
+}
 
 // Add News
 const actualNewsFeedDiv = document.querySelector('.actualNewsFeedDiv')
@@ -371,20 +419,35 @@ const addNews = () => {
 
     const countDown = document.createElement("div")
     countDown.setAttribute('class', 'countDown')
+
+    // After CD
     setTimeout(() => {
         document.querySelector('.countDown').classList.remove('countDown')
-        updateNews()
-    }, 10000)
+
+        const resultsText = document.createElement("div")
+        resultsText.setAttribute('class', 'resultsText')
+
+        const resultsIndex = Math.floor(Math.random() * news[newsIndex].effects.length)
+
+        resultsText.innerText = news[newsIndex].effects[resultsIndex].results
+
+        changeStockPrices(news[newsIndex].effects[resultsIndex].trend)
+
+        newDiv.appendChild(resultsText)
+    }, game.roundDuration * 1000)
 
     newDiv.appendChild(newsText)
     newDiv.appendChild(countDown)
 
-    actualNewsFeedDiv.appendChild(newDiv)
+    actualNewsFeedDiv.insertBefore(newDiv, actualNewsFeedDiv.firstChild)
 }
 
 const updateNews = () => {
     addNews()
-    gsap.to('.countDown', {duration: 10, scaleX: 0, transformOrigin: 'left', ease: 'none'})
+    gsap.to('.countDown', {duration: game.roundDuration, scaleX: 0, transformOrigin: 'left', ease: 'none'})
+    setTimeout(() => {
+        updateNews()
+    }, (Math.random()*5 + game.roundDuration + 3) * 1000)
 }
 
 updateNews()

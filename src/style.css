@@ -105,6 +105,13 @@ body::-webkit-scrollbar {
 
 .newsText {
     margin: 2rem;
+    /* text-align: justify; */
+    font-weight: bold;
+}
+
+.resultsText {
+    margin: 2rem;
+    text-align: justify;
 }
 
 .countDown {
@@ -158,8 +165,12 @@ body::-webkit-scrollbar {
     width: 5rem;
 }
 
+.stockValueDiv, .stockOwnedDiv {
+    font-size: 2rem;
+}
+
 .stockNameDiv, .stockPriceDiv, .stockChangeDiv {
-    width: 10rem;
+    width: 12rem;
 }
 
 .stockChangeDiv {
@@ -225,7 +236,7 @@ body::-webkit-scrollbar {
     align-items: center;
 }
 
-.percentageDiv {
+.playerPercentageDiv, .fishPercentageDiv {
     font-size: 4rem;
     display: flex;
     justify-content: space-between;
