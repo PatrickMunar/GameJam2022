@@ -62,7 +62,7 @@ body::-webkit-scrollbar {
 
 /* News Feed */
 .newsFeedDiv {
-    width: 50%;
+    width: 30%;
     height: 100%;
     border-left: 1px solid black;
     overflow-y: hidden;
@@ -75,12 +75,13 @@ body::-webkit-scrollbar {
 
 .newsFeedHeaderDiv {
     font-size: 3rem;
-    width: 32.5vw;
+    width: 19.5vw;
     padding: 2rem;
     border: 1px solid black;
     background-color: #23395D;
     color: white;
     position: fixed;
+    text-align: center;
 }
 
 .actualNewsFeedDiv {
@@ -115,7 +116,7 @@ body::-webkit-scrollbar {
 
 /* Stocks */
 .stocksDiv {
-    width: 50%;
+    width: 70%;
     height: 100%;
     border-left: 1px solid black;
     border-right: 1px solid black;
@@ -124,6 +125,7 @@ body::-webkit-scrollbar {
     margin-top: 1rem;
     margin-bottom: 1rem; */
     overflow-y: auto;
+    font-weight: bold;
 }
 
 .categoryDiv {
@@ -152,12 +154,12 @@ body::-webkit-scrollbar {
     align-items: center;
 }
 
-.stockLogoDiv {
+.stockLogoDiv, .stockValueDiv, .stockOwnedDiv {
     width: 5rem;
 }
 
 .stockNameDiv, .stockPriceDiv, .stockChangeDiv {
-    width: 9rem;
+    width: 10rem;
 }
 
 .stockChangeDiv {

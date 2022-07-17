@@ -17,8 +17,6 @@ gsap.registerPlugin(ScrollTrigger)
 // 3rd party library setup:
 const bodyScrollBar = Scrollbar.init(document.querySelector('#bodyScrollbar'), { damping: 0.1, delegateTo: document })
 
-let scrollY = 0
-
 // Tell ScrollTrigger to use these proxy getter/setter methods for the "body" element: 
 ScrollTrigger.scrollerProxy('#bodyScrollbar', {
   scrollTop(value) {
@@ -34,11 +32,6 @@ ScrollTrigger.scrollerProxy('#bodyScrollbar', {
 
 // when the smooth scroller updates, tell ScrollTrigger to update() too: 
 bodyScrollBar.addListener(ScrollTrigger.update);
-
-// Functions
-const lerp = (start, end, t) => {
-    return start * ( 1 - t ) + end * t;
-}
 
 // -----------------------------------------------------------------
 /**
@@ -240,6 +233,116 @@ const countDown = () => {
 
 countDown()
 
-gsap.to('.timerProgress', {duration: 0, scaleX: 25/30, transformOrigin: 'left', ease: 'none'})
+// Round Timer (Will stop in 10 minutes)
+gsap.fromTo('.timerProgress', {duration: 0, scaleX: 0, transformOrigin: 'left', ease: 'none'}, {duration: 5*60, scaleX: 1, transformOrigin: 'left', ease: 'none'})
+
+const actualTimer = document.querySelector('.actualTimer')
+let days = 30
+
+const updateTimer = () => {
+    actualTimer.innerText = days + ' days'
+    days = days - 1
+    setTimeout(() => {
+        updateTimer()
+    }, 5*60000 / 30)
+}
+
+updateTimer()
+
+// Player Object
+const playerData = {
+    name: 'Patrick',
+    currentMoney: 1000,
+    availableMoney: 1000,
+    investedMoney: 0,
+    score: 0,
+}
+
+const playerCV = document.querySelector('.playerCV')
+const playerAM = document.querySelector('.playerAM')
+const playerScore = document.querySelector('.playerScore')
+
+
+// Update Player Portfolio
+const updatePlayerPortfolio = () => {
+    playerCV.innerText = playerData.currentMoney.toLocaleString("en-US")
+    playerAM.innerText = playerData.availableMoney.toLocaleString("en-US")
+    playerScore.innerText = playerData.score.toLocaleString("en-US")
+}
+
+updatePlayerPortfolio()
+
+// Stocks Data
+const stocksData = [
+    {name: "McRonald's", price: 15, projection: 0, owned: 0, value: 0},
+    {name: "Burger Queen", price: 15, projection: 0, owned: 0, value: 0},
+    {name: "Chirper", price: 15, projection: 0, owned: 0, value: 0},
+    {name: "Goggle", price: 15, projection: 0, owned: 0, value: 0},
+    {name: "Fjord", price: 15, projection: 0, owned: 0, value: 0},
+    {name: "Tezla", price: 15, projection: 0, owned: 0, value: 0},
+    {name: "?", price: 15, projection: 0, owned: 0, value: 0}
+]
+
+const stockNames = document.querySelectorAll('.stockNameDiv')
+const stockPrices = document.querySelectorAll('.stockPrice')
+const stockProjections = document.querySelectorAll('.stockProjection')
+const stockChangeDivs = document.querySelectorAll('.stockChangeDiv')
+const stockArrows = document.querySelectorAll('.stockArrow')
+const stockOwneds = document.querySelectorAll('.stockOwned')
+const stockValues = document.querySelectorAll('.stockValue')
+
+const updateStocks = () => {
+    for (let i = 0; i < stockNames.length; i++) {
+        stockNames[i].innerText = stocksData[i].name
+        stockPrices[i].innerText = stocksData[i].price
+        stockProjections[i].innerText = stocksData[i].projection
+        if (stocksData[i].projection >= 0) {
+            stockChangeDivs[i].classList.remove('down')
+            stockChangeDivs[i].classList.add('up')
+            stockArrows[i].innerText = 'arrow_drop_up'
+        }
+        else {
+            stockChangeDivs[i].classList.remove('up')
+            stockChangeDivs[i].classList.add('down')
+            stockArrows[i].innerText = 'arrow_drop_down'
+        }
+        stockOwneds[i].innerText = stocksData[i].owned
+        stocksData[i].value = stocksData[i].owned * stocksData[i].price
+        stockValues[i].innerText = stocksData[i].value
+    }
+}
+
+updateStocks()
+
+// Buy Events
+const buyButtons = document.querySelectorAll('.buyButton')
+
+for (let i = 0; i < buyButtons.length; i++) {
+    buyButtons[i].addEventListener('click', () => {
+        if (playerData.availableMoney > stocksData[i].price) {
+            stocksData[i].owned += 1
+            playerData.availableMoney -= stocksData[i].price
+        }
+        globalUpdates()
+    })
+}
+
+// Sell Events
+const sellButtons = document.querySelectorAll('.sellButton')
+
+for (let i = 0; i < sellButtons.length; i++) {
+    sellButtons[i].addEventListener('click', () => {
+        if (stocksData[i].owned > 0) {
+            stocksData[i].owned -= 1
+            playerData.availableMoney += stocksData[i].price
+        }
+        globalUpdates()
+    })
+}
+
+const globalUpdates = () => {
+    updateStocks()
+    updatePlayerPortfolio()
+}
 
 tick()
